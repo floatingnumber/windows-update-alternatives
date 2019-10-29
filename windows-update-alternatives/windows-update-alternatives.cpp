@@ -13,6 +13,7 @@ using namespace std;
 
 bool menu(string argv1);	//菜单
 void help();				//打印--help
+bool set(string app, string path);	//执行--set
 
 /**
  * @title main
@@ -83,16 +84,16 @@ void help() {
  * @param path 要设置的路径
  * @return bool 返回是否成功
  */
-bool set(string app, string *path) {
+bool set(string app, string path) {
 	// 先查询app是否注册，没注册的话注册（设置环境变量，默认软连接到程序目录，建立软连接，添加记录，设置优先级默认10）--to do
 	// 已经注册的app，查询软连接到的地址，删除改地址重新创建 --doing
 	// 例子：
 	string appName = app;	//php
 	//利用appname查询appFromPath，假设结果如下
 	string appFromPath = "D:\\wamp64\\bin\\php\\php";  //比如查询结果是D:\wamp64\bin\php\php
-	char appToPath = path;	//新设置的路径
-	system("rmdir " + appFromPath);
-	system("mklink / D " + appFromPath + " " + appToPath);
+	string appToPath = path;	//新设置的路径
+	system(("rmdir " + appFromPath).c_str());
+	system(("mklink / D " + appFromPath + " " + appToPath).c_str());
 	return false;
 }
 
