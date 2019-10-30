@@ -11,7 +11,7 @@
 
 using namespace std;
 
-bool menu(string argv1);	//菜单
+bool menu(char* argv[]);	//菜单
 void help();				//打印--help
 bool set(string app, string path);	//执行--set
 
@@ -25,9 +25,7 @@ bool set(string app, string path);	//执行--set
  */
 int main(int argc, char* argv[])
 {
-	cout << argc << endl;  //参数个数
 	menu(argv); //除了执行文件的第一个参数 --help
-    cout << "Hello World!\n"; 
 	return 0;
 }
 
@@ -39,25 +37,27 @@ int main(int argc, char* argv[])
  * @return bool 返回是否成功
  */
 bool menu(char* argv[]) {
+	string sArgv = argv[1];
 	//本来想switch 太菜了  秀不起来
-	if (argv[1] == "--install" || argv[1] == "-i") {
+	if (sArgv == "--install" || sArgv == "-i") {
 		cout << "注册组件" << endl;
 		return true;
 	}
-	else if(argv[1] == "--remove" || argv[1] == "-r") {
+	else if(sArgv == "--remove" || sArgv == "-r") {
 		cout << "删除已经注册的组件" << endl;
 		return true;
 	}
-	else if (argv[1] == "--config" || argv[1] == "-c") {
+	else if (sArgv == "--config" || sArgv == "-c") {
 		cout << "删除已经注册的组件" << endl;
 		return true;
 	}
-	else if (argv[1] == "--set" || argv[1] == "-s") {
+	else if (sArgv == "--set" || sArgv == "-s") {
 		//update-alternatives --set python /usr/bin/python3.6
 		cout << "直接设置路径" << endl;
+		set(argv[2], argv[3]);
 		return true;
 	}
-	else if (argv[1] == "--help" || argv[1] == "-h") {
+	else if (sArgv == "--help" || sArgv == "-h") {
 		help();
 		return true;
 	}
@@ -88,9 +88,11 @@ bool set(string app, string path) {
 	// 先查询app是否注册，没注册的话注册（设置环境变量，默认软连接到程序目录，建立软连接，添加记录，设置优先级默认10）--to do
 	// 已经注册的app，查询软连接到的地址，删除改地址重新创建 --doing
 	// 例子：
+	
 	string appName = app;	//php
-	//利用appname查询appFromPath，假设结果如下
+	//利用appname查询appFromPath，--to do
 	string appFromPath = "D:\\wamp64\\bin\\php\\php";  //比如查询结果是D:\wamp64\bin\php\php
+
 	string appToPath = path;	//新设置的路径
 	system(("rmdir " + appFromPath).c_str());
 	system(("mklink / D " + appFromPath + " " + appToPath).c_str());
