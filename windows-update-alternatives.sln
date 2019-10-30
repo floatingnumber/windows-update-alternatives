@@ -5,6 +5,11 @@ VisualStudioVersion = 15.0.28307.645
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "windows-update-alternatives", "windows-update-alternatives\windows-update-alternatives.vcxproj", "{6DD3C3E6-A484-4AD9-998E-08F6B64189F1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{95F3C96F-41C2-4E7B-93C3-8380B61E72E7}"
+	ProjectSection(SolutionItems) = preProject
+		windows-update-alternatives\README.md = windows-update-alternatives\README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64

@@ -91,11 +91,13 @@ bool set(string app, string path) {
 	
 	string appName = app;	//php
 	//利用appname查询appFromPath，--to do
-	string appFromPath = "D:\\wamp64\\bin\\php\\php";  //比如查询结果是D:\wamp64\bin\php\php
+	string appFromPath = "D:\\wamp64\\bin\\php\\php";  //连接路径 比如查询结果是D:\wamp64\bin\php\php
 
 	string appToPath = path;	//新设置的路径
+
+	//这两处system取消命令执行
 	system(("rmdir " + appFromPath).c_str());
-	system(("mklink / D " + appFromPath + " " + appToPath).c_str());
+	system(("mklink / D " + appFromPath + " " + appToPath).c_str()); //删除回显
 	return false;
 }
 
